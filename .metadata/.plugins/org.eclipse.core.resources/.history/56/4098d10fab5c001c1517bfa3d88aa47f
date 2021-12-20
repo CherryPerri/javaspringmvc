@@ -1,0 +1,18 @@
+package com.laptrinhjavaweb.controller.admin;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.laptrinhjavaweb.model.CategoryModel;
+
+public class CategoryController {
+	@RequestMapping(value="/quan-tri/the-loai/danh-sach", method = RequestMethod.GET)
+	public ModelAndView showList(@ModelAttribute("model") CategoryModel model) {
+		ModelAndView mav = new ModelAndView("admin/category/list");
+		
+		mav.addObject("model", model);
+		return mav;
+	}
+}

@@ -1,0 +1,32 @@
+package com.laptrinhjavaweb.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.laptrinhjavaweb.entity.CategoryEntity;
+import com.laptrinhjavaweb.model.CategoryModel;
+import com.laptrinhjavaweb.repository.CategoryRepository;
+import com.laptrinhjavaweb.service.ICategoryService;
+
+@Service
+public class CategoryService implements ICategoryService{
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
+	@Override
+	public List<CategoryModel> findAll() {
+		List<CategoryModel> models = new ArrayList<>();
+		List<CategoryEntity> entities = categoryRepository.findAll();
+		for(CategoryEntity item: entities) {
+			CategoryModel categoryModel = new CategoryModel();
+			categoryModel.setCode(item.getCode());
+			categoryModel.setName(item.getName());
+		}
+		return null;
+	}
+
+}
