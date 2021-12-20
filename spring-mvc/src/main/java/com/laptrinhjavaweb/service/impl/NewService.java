@@ -8,7 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.laptrinhjavaweb.converter.CategoryConverter;
 import com.laptrinhjavaweb.converter.NewConverter;
+import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.NewDTO;
 import com.laptrinhjavaweb.entity.CategoryEntity;
 import com.laptrinhjavaweb.entity.NewEntity;
@@ -27,6 +29,9 @@ public class NewService implements INewService{
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private CategoryConverter categoryConverter;
 	
 	@Override
 	public List<NewDTO> findAll(Pageable pageable) {
@@ -72,6 +77,17 @@ public class NewService implements INewService{
 		for(long id: ids) {
 			newRepository.delete(id);
 		}
+	}
+
+	@Override
+	public List<CategoryDTO> findAll() {
+		List<CategoryDTO> result = new ArrayList<>();
+		List<CategoryEntity> entities = categoryRepository.findAll();
+		for(CategoryEntity item: entities) {
+			CategoryDTO dto = categoryConverter.toDto(item);
+			result.add(dto);
+		}
+		return result;
 	}
 }
  

@@ -1,9 +1,9 @@
 <%@include file="/common/taglib.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:url var="newURL" value="/quan-tri/the-loai/danh-sach"></c:url>
-<c:url var="editNewURL" value="/quan-tri/the-loai/chinh-sua"></c:url>
-<c:url var="newAPI" value="/api/category"></c:url>
+<c:url var="categoryURL" value="/quan-tri/the-loai/danh-sach"></c:url>
+<c:url var="editCategoryURL" value="/quan-tri/the-loai/chinh-sua"></c:url>
+<c:url var="categoryAPI" value="/api/category"></c:url>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,63 +42,35 @@
 						</div>
 					</c:if>
 					
-					<form:form class="form-horizontal" role="form" id="formSubmit" modelAttribute="model">
-						<div class="form-group">
-						  <label class="col-sm-3 control-label no-padding-right" for="categoryCode">Thể loại:</label>
-						  	<div class="col-sm-9">
-							  	<%-- <select class="form-control" id="categoryCode" name="categoryCode" style="width:35%">
-								    <option value="">-- Chọn thể loại --</option>
-								    <c:forEach var="item" items="${categories}">
-								    	<option value="${item.code}">${item.name}</option>
-								    </c:forEach>								
-							  	</select> --%>
-							  	<form:select path="categoryCode" id="categoryCode">
-							  		<form:option value="" label="-- Chọn thể loại --"/>
-							  		<form:options items="${categories}"/>
-							  	</form:select>
-						  	</div>						  	
-						</div>
+					<form:form class="form-horizontal" role="form" id="formSubmit" modelAttribute="model">						
 					
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-padding-right"	for="form-field-1"> Tên bài viết </label>
+							<label class="col-sm-3 control-label no-padding-right"	for="form-field-1"> Code thể loại (vd: abc-xyz) </label>
 							<div class="col-sm-9">
-								<form:input path="title" cssClass="col-xs-10 col-sm-5"/>
+								<form:input path="code" cssClass="col-xs-10 col-sm-5"/>
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-padding-right"	for="form-field-1"> Ảnh đại diện </label>
+							<label class="col-sm-3 control-label no-padding-right"	for="form-field-1"> Tên thể loại </label>
 							<div class="col-sm-9">
-								<input type="file" class="col-xs-10 col-sm-5" id="thumbnail" name="thumbnail"/>
+								<form:input path="code" cssClass="col-xs-10 col-sm-5"/>
 							</div>
 						</div>
 						
-						<div class="form-group">
-						  <label class="col-sm-3 control-label no-padding-right" for="shortDescription">Mô tả ngắn:</label>
-						  <div class="col-sm-9">
-						  	<form:textarea path="shortDescription" rows="5" cols="10" cssClass="form-control" id="shortDescription"/>
-						  </div>						  
-						</div>
-						
-						<div class="form-group">
-						  <label class="col-sm-3 control-label no-padding-right" for="content">Nội dung:</label>
-						  <div class="col-sm-9">
-						  	<form:textarea path="content" rows="5" cols="10" cssClass="form-control" id="content"/>
-						  </div>
-						</div>
-						<form:hidden path="id" id="newId"/>
+						<form:hidden path="id" id="categoryId"/>
 						<div class="clearfix form-actions">
 							<div class="col-md-offset-3 col-md-9">
 								<c:if test="${not empty model.id}">
-									<button class="btn btn-info" type="button" id="btnAddOrUpdateNew">
+									<button class="btn btn-info" type="button" id="btnAddOrUpdateCategory">
 										<i class="ace-icon fa fa-check bigger-110"></i>
-										Cập nhật bài viết
+										Cập nhật thể loại
 									</button>
 								</c:if>
 								<c:if test="${empty model.id}">
-									<button class="btn btn-info" type="button" id="btnAddOrUpdateNew">
+									<button class="btn btn-info" type="button" id="btnAddOrUpdateCategory">
 										<i class="ace-icon fa fa-check bigger-110"></i>
-										Thêm bài viết
+										Thêm thể loại
 									</button>
 								</c:if>
 								
@@ -117,49 +89,49 @@
 	</div>
 </div>
 <script type="text/javascript">
-$('#btnAddOrUpdateNew').click(function (e) {
+$('#btnAddOrUpdateCategory').click(function (e) {
     e.preventDefault();
     var data = {};
     var formData = $('#formSubmit').serializeArray();
     $.each(formData, function (i, v) {
         data[""+v.name+""] = v.value;
     });
-    var id = $('#newId').val();
+    var id = $('#categoryId').val();
     if (id == "") {
-    	addNew(data);
+    	addCategory(data);
     } else {
-    	updateNew(data);
+    	updateCategory(data);
     }
 });
 
 function addNew(data) {
 	$.ajax({
-        url: '${newAPI}',
+        url: '${categoryAPI}',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
         dataType: 'json',
         success: function (result) {
-        	window.location.href = "${editNewURL}?id="+result.id+"&message=insert_success";
+        	window.location.href = "${editCategoryURL}?id="+result.id+"&message=insert_success";
         },
         error: function (error) {
-        	window.location.href = "${newURL}?page=1&limit=2&message=error_system";
+        	window.location.href = "${categoryURL}?page=1&limit=2&message=error_system";
         }
     });
 }
 
 function updateNew(data) {
 	$.ajax({
-        url: '${newAPI}',
+        url: '${categoryAPI}',
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(data),
         dataType: 'json',
         success: function (result) {
-        	window.location.href = "${editNewURL}?id="+result.id+"&message=update_success";
+        	window.location.href = "${editCategoryURL}?id="+result.id+"&message=update_success";
         },
         error: function (error) {
-        	window.location.href = "${editNewURL}?id="+result.id+"&message=error_system";
+        	window.location.href = "${editCategoryURL}?id="+result.id+"&message=error_system";
         }
     });
 }

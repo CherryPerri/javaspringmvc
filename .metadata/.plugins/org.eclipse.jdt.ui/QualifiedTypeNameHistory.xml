@@ -33,14 +33,11 @@
 <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.dto.AbstractDTO"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-<fullyQualifiedTypeName name="com.laptrinhjavaweb.converter.CategoryConverter"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.entity.NewEntity"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.converter.NewConverter"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.util.MessageUtil"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
@@ -50,7 +47,6 @@
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.dao.ICategoryDAO"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-<fullyQualifiedTypeName name="com.laptrinhjavaweb.entity.CategoryEntity"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.model.CategoryModel"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
@@ -58,6 +54,10 @@
 <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.repository.CategoryRepository"/>
 <fullyQualifiedTypeName name="com.laptrinhjavaweb.service.ICategoryService"/>
-<fullyQualifiedTypeName name="com.laptrinhjavaweb.dto.CategoryDTO"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+<fullyQualifiedTypeName name="com.laptrinhjavaweb.dto.CategoryDTO"/>
+<fullyQualifiedTypeName name="com.laptrinhjavaweb.entity.CategoryEntity"/>
+<fullyQualifiedTypeName name="com.laptrinhjavaweb.converter.CategoryConverter"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
 </qualifiedTypeNameHistroy>

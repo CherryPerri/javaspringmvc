@@ -45,17 +45,11 @@
 					<form:form class="form-horizontal" role="form" id="formSubmit" modelAttribute="model">
 						<div class="form-group">
 						  <label class="col-sm-3 control-label no-padding-right" for="categoryCode">Thể loại:</label>
-						  	<div class="col-sm-9">
-							  	<select class="form-control" id="categoryCode" name="categoryCode" style="width:35%">
-								    <option value="">-- Chọn thể loại --</option>
-								    <c:forEach var="item" items="${categories}">
-								    	<option value="${item.code}">${item.name}</option>
-								    </c:forEach>								
-							  	</select>
-							  	<%-- <form:select path="categoryCode" id="categoryCode">
+						  	<div class="col-sm-9">							  	
+							  	<form:select path="categoryCode" id="categoryCode">
 							  		<form:option value="" label="-- Chọn thể loại --"/>
 							  		<form:options items="${categories}"/>
-							  	</form:select> --%>
+							  	</form:select>
 						  	</div>						  	
 						</div>
 					
